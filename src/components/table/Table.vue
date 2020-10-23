@@ -1,17 +1,13 @@
 <template>
-  <div>
-    <el-table :data="tableData" style="width: 100%">
-      <el-table-column prop="date" label="日期" width="180"> </el-table-column>
-      <el-table-column prop="name" label="姓名" width="180"> </el-table-column>
-      <el-table-column prop="address" label="地址"> </el-table-column>
-      <el-table-column label="操作">
-        <template slot-scope="scope">
-          <el-button size="mini" @click="handleEdit(scope.$index, scope.row)"
-            >编辑</el-button
-          >
-        </template>
-      </el-table-column>
-    </el-table>
+  <div class="container">
+    <div v-for="item in listData" :key="item">
+    <div class="header">
+      <span>{{item.date}}</span> <span>{{item.method}}</span>
+    </div>
+    <div class="footer">
+      {{item.info}}
+    </div>
+    </div>
   </div>
 </template>
 
@@ -19,19 +15,32 @@
   export default {
     data() {
       return {
-        tableData: [],
+        listData: [
+          {date:'2020-8-12 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+          {date:'2020-8-14 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+          {date:'2020-8-12 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+          {date:'2020-8-03 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+          {date:'2020-8-15 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+          {date:'2020-8-14 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+          {date:'2020-8-16 14:00:50',method:'手动',info:'张三将状态规划中修改成了实现中'},
+        ],
       }
     },
     methods: {
-      handleEdit(index, row) {
-        console.log(index, row)
-        this.$router.push({ path: `/form/${index}` })
-      },
-    },
-    created() {
-      this.tableData = this.$store.state.tableData
     },
   }
 </script>
 
-<style></style>
+<style lang="less">
+.container{
+  .header{
+    font-size: 16px;
+    color:gray;
+    margin-bottom: 10px;
+    span:nth-child(2)
+  }
+  .footer{
+    margin-top: 30px;
+  }
+}
+</style>
