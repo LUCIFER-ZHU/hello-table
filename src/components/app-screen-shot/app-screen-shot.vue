@@ -1,44 +1,41 @@
 <template>
   <div class="screen-shot">
-    <button @click="startshot">111111111111111111</button>
-    <ul>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-      <li>1112dwa dwa dwa  a dwad wa  dwad wa a da d a dw a dwa  dwa </li>
-    </ul>
+    <button @click="startshot">截图开始</button>
+    <iframe width='600' height='300' src='./assets/test.html'></iframe>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import axios from 'axios';
-import ScreenShort from "ibiz-web-screen-shot";
+import html2canvas from 'html2canvas';
 @Component({})
 export default class appScreenShot extends Vue {
 
     public a:any = null;
 
     public startshot(){
-      this.a = new ScreenShort({
-        enableWebRtc :false,
-        completeCallback : this.completeCallback,
-        closeCallback : this.closeCallback,
-        level : 0,
-        canvasWidth :0,
-        canvasHeight :0
-      });  
-      console.log(this.a);
+      // this.a = new ScreenShort({
+      //   enableWebRtc :false,
+      //   completeCallback : this.completeCallback,
+      //   closeCallback : this.closeCallback,
+      //   level : 0,
+      //   canvasWidth :0,
+      //   canvasHeight :0
+      // });  
+      // console.log(this.a);
+      var iframe = document.querySelector('iframe');
+      let scrollY:any = iframe?.contentWindow?.pageYOffset;
+      console.log(scrollY);
+      
+      html2canvas(document.body,{
+          allowTaint:true,
+          useCORS:true,
+          y: window.pageYOffset,
+          iframeScrollY:-scrollY,
+        }).then(function(canvas) {
+          document.body.appendChild(canvas);
+      });
       
     }
 
