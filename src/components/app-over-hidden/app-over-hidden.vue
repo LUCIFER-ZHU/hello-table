@@ -6,9 +6,6 @@
 </template>
 <script lang="ts">
 import { Component, Vue, Prop, Model } from 'vue-property-decorator';
-import { CodeListService } from 'ibiz-service';
-import { LogUtil, Util } from 'ibiz-core';
-import { Subject } from 'rxjs';
 
 @Component({})
 export default class AppOverHidden extends Vue {

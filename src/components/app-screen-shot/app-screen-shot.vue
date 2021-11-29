@@ -28,14 +28,14 @@ export default class appScreenShot extends Vue {
       let scrollY:any = iframe?.contentWindow?.pageYOffset;
       console.log(scrollY);
       
-      html2canvas(document.body,{
-          allowTaint:true,
-          useCORS:true,
-          y: window.pageYOffset,
-          iframeScrollY:-scrollY,
-        }).then(function(canvas) {
-          document.body.appendChild(canvas);
-      });
+      // html2canvas(document.body,{
+      //     allowTaint:true,
+      //     useCORS:true,
+      //     y: window.pageYOffset,
+      //     iframeScrollY:-scrollY,
+      //   }).then(function(canvas:any) {
+      //     document.body.appendChild(canvas);
+      // });
       
     }
 
